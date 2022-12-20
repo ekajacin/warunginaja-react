@@ -5,7 +5,9 @@ import Dashboard from "./Dashboard";
 import "../assets/style/main.css";
 import Detail from "./Detail";
 import Cart from "./Cart";
+import ProductTambah from "../components/ProductTambah"
 import Success from "./Success";
+// import TambahProduct from "../components/TambahProduct";
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/tambahProduct" element={<ProductTambah/>}/>
       </Routes>
     </BrowserRouter>
   );

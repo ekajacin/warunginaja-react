@@ -38,16 +38,16 @@ app.get("/detail", (req, res) => {
 });
 
 //menambahkan data product
-app.post("/detail",(res,req)=>{
+app.post("/details",(req, res)=>{
   upload(req,res, (err)=>{
     if(err instanceof multer.MulterError){
       return res.status(480).json(err);
     } else if (err) {
       return res.status(500).json(err);
     }
-    let value=[
+    let value = [
       [
-        req.body.nama,
+        req.body.name,
         req.body.price,
         req.body.desc1,
         req.body.desc2,
@@ -56,7 +56,7 @@ app.post("/detail",(res,req)=>{
       ],
     ];
     pool.query(
-      "INSERT INTO product (name,price,desc1,desc2,owner,path) VALUES ?",
+      "INSERT INTO product (name, price, desc1, desc2, owner, path) VALUES ?",
       [value],
       (err, result)=>{
         if (err) {
