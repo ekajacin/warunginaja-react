@@ -23,9 +23,16 @@ function HomePage() {
       <div className="page-content page-home">
         <Banner />
         <Categories />
-        {products.map((product) => {
-          return (
-            <Product
+        <section className="store-new-products">
+        <div className="container">
+          <div className="row">
+            <div className="col-12" data-aos="fade-up">
+              <h5>Products</h5>
+            </div>
+          </div>
+          {products.map((product) => {
+            return (
+               <Product
               id={product.id}
               name={product.name}
               price={product.price}
@@ -34,6 +41,8 @@ function HomePage() {
             />
           );
         })}
+      </div>
+      </section>
       </div>
     </>
   );

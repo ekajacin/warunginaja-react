@@ -13,6 +13,7 @@ export default function Product(props) {
             </div>
           </div>
 
+          <div className="product">
           <div className="row">
             <div
               className="col-6 col-md-4 col-lg-3"
@@ -43,6 +44,7 @@ export default function Product(props) {
                 </a>
               </Link>
             </div>
+          </div>
           </div>
         </div>
       </section>

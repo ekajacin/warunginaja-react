@@ -19,18 +19,8 @@ export default function Cart() {
     <>
       <NavbarComponent />
       <div className="page-content page-details">
-        {products.map((product) => {
-          return (
             <CartPage
-              id={product.id}
-              name={product.name}
-              price={product.price}
-              image={serverHost + product.path}
-              owner={product.owner}
-              path={product.path}
             />
-          );
-        })}
       </div>
       <Footer />
     </>

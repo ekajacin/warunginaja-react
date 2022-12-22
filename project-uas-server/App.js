@@ -36,6 +36,14 @@ app.get("/detail", (req, res) => {
     return res.status(200).json(result);
   });
 });
+app.get("/cart", (req, res) => {
+  pool.query("SELECT * FROM product", (err, result) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    return res.status(200).json(result);
+  });
+});
 
 //menambahkan data product
 app.post("/details",(req, res)=>{
@@ -52,11 +60,12 @@ app.post("/details",(req, res)=>{
         req.body.desc1,
         req.body.desc2,
         req.body.owner,
+        req.body.kategori,
         req.file.path.replace("public\\images\\","/images/" ),
       ],
     ];
     pool.query(
-      "INSERT INTO product (name, price, desc1, desc2, owner, path) VALUES ?",
+      "INSERT INTO product (name, price, desc1, desc2, owner,kategori_id, path) VALUES ?",
       [value],
       (err, result)=>{
         if (err) {

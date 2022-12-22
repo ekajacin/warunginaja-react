@@ -11935,3 +11935,13 @@ footer p {
   opacity: 0.5;
 }
 /*# sourceMappingURL=main.css.map */
+
+.product{
+  display: inline-block;
+    width: 23%;
+    text-align: center;
+    box-shadow: 0 0 6px #e8e8e8;
+    margin-right: 20px;
+    background-color: #fff;
+    margin-top: 10px;
+}
