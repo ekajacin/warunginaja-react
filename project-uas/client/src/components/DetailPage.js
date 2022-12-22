@@ -2,11 +2,12 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 
+
 import Testi1 from "../assets/images/icon-testimonial-1.png";
 import Testi2 from "../assets/images/icon-testimonial-2.png";
 import Testi3 from "../assets/images/icon-testimonial-3.png";
 
-export default function DetailPage() {
+export default function DetailPage(props) {
   const location = useLocation();
   console.log(location);
   return (
@@ -44,7 +45,17 @@ export default function DetailPage() {
               />
             </div>
             <div data-aos="zoom-in">
-              <Link to={`/cart`}>
+              <Link to={`/cart/${location.state.id}`}
+              state={{
+                id: location.state.id,
+                name: location.state.name,
+                price:location.state.price,
+                image: location.state.image,
+                desc1: location.state.desc1,
+                desc2: location.state.desc2,
+                path: location.state.path,
+              }}
+              >
                 <a className="btn btn-success nav-link px-4 text-white btn-block mb-3">
                   Add to Cart
                 </a>

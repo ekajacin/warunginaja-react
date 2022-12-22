@@ -15,7 +15,7 @@ export default function Success() {
                 <h2>PQR12EX</h2>
                 <p>Token Pengambillan</p>
                 <div>
-                  <a class="btn btn-success w-50 mt-4" href="/dashboard">
+                  <a class="btn btn-success w-50 mt-4" href="/">
                     My Dashboard
                   </a>
                 </div>

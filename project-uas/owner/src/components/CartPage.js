@@ -1,8 +1,29 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/style-prop-object */
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useLocation, } from "react-router-dom";
 
-export default function CartPage(props) {
+export default function CartPage() {
+  const location = useLocation();
+  const serverHost = "http://localhost:5001";
+  const [products, setProducts] = useState([]);
+  console.log(location);
+
+  useEffect(() => {
+    axios.get(serverHost + "/cart").then((res) => {
+      // console.log(res.data);
+      setProducts(res.data);
+    });
+  }, []);
+
+  function hadleHapusClick(path) {
+    const formData = new FormData();
+    formData.append("path", path);
+    axios.post(serverHost+"/product/delete", formData).then((res)=>{
+      setProducts(res.data);
+    });
+  }
   return (
     <>
       <section
@@ -47,21 +68,26 @@ export default function CartPage(props) {
                 <tbody>
                   <tr>
                     <td>
-                      <img src={props.image} alt="" className="cart-image" />
+                      <img src={serverHost + location.state.path} alt="" className="cart-image" />
                     </td>
                     <td>
-                      <div className="product-title">{props.name}</div>
-                      <div className="product-subtitle">{props.owner}</div>
+                      <div className="product-title">{location.state.name}</div>
+                      <div className="product-subtitle">{location.state.owner}</div>
                     </td>
                     <td>
-                      <div className="product-title">Rp. {props.price}</div>
+                      <div className="product-title">Rp. {location.state.price}</div>
                       <div className="product-subtitle">Rupiah</div>
                     </td>
                     <td>
-                      <a href="#" className="btn btn-remove-cart">
-                        {" "}
-                        Remove{" "}
-                      </a>
+
+                      <input
+                      type={"button"}
+                      value={"Remove"}
+                      onClick={(event)=>{
+                        hadleHapusClick(location.state.path);
+                        console.log(location.state.id);
+                      }}/>
+                    
                     </td>
                   </tr>
                 </tbody>
@@ -79,7 +105,7 @@ export default function CartPage(props) {
           <div className="row" data-aos="fade-up" data-aos-delay="200">
             <div className="col-4 col-md-2">
               <div className="product-title text-success">
-                Rp. {props.price}
+                Rp. {location.state.price}
               </div>
               <div className="product-subtitle">Total</div>
             </div>

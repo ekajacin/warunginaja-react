@@ -19,8 +19,12 @@ export default function Cart() {
     <>
       <NavbarComponent />
       <div className="page-content page-details">
+       
+         
             <CartPage
+              
             />
+        
       </div>
       <Footer />
     </>

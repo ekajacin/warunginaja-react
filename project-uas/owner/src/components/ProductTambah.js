@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function ProductTambah() {
   const serverHost = "http://localhost:5001";
@@ -9,7 +10,6 @@ export default function ProductTambah() {
     const [desc1, setDesc1]= useState("");
     const [desc2, setDesc2]= useState("");
     const [owner, setOwner]= useState("");
-    const [kategori, setKategori]=useState();
     const [products, setProducts] = useState([]);
 
     //untuk lokasi penyimpanan file path
@@ -26,14 +26,15 @@ export default function ProductTambah() {
       formData.append("desc1", desc1);
       formData.append("desc2", desc2);
       formData.append("owner", owner);
-      formData.append("kategori", kategori);
       axios.post(serverHost+"/details", formData).then((res)=> {
         setProducts(res.data);
       });
       console.log(setProducts);
       
     }
-
+function handleClick(event) {
+  window.location="/";
+}
 
 
   return (
@@ -139,25 +140,7 @@ export default function ProductTambah() {
                                 //   className="form-control"
                                 ></textarea>
                               </div>
-                            </div>
-                            
-                            <div className="col-md-12">
-                              <div className="form-group">
-                                <label htmlFor="description">kategori</label>
-                                
-                                <select value={kategori} 
-                                onChange={(event)=>{
-                                    setKategori(event.target.value)
-                                  }}>
-                                  <option value="1">1.Paket </option>
-                                   <option value="2" >2.Kebutuhan Rumah Tangga </option>
-                                   <option value="3" >3. Kebutuhan Wanita </option>
-                                   <option value="4" >4. Kebutuhan Pria </option>
-                                   <option value="5" >5. Lampu </option>
-                                   <option value="6" >6. Kebutuhan Bayi </option>
-                                </select>
-                              </div>
-                            </div>
+                            </div>    
                             <div className="col-md-12">
                               <div className="form-group">
                                 <label htmlFor="thumbnails">Thumbnails</label>
@@ -182,11 +165,14 @@ export default function ProductTambah() {
                       </div>
                       <div className="row mt-2">
                         <div className="col">
-                          <button
+                            <button
                           type="submit"
                           className="btn btn-success btn-block px-5"
                           value="Save Now"
-                          ><a href="/">Save Now</a></button>
+                          onClick={(event)=>{
+                            handleClick(event);
+                          }}
+                          >Save Now</button>
                         </div>
                       </div>
                     </div>
